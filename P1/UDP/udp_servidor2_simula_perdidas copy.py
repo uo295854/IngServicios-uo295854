@@ -11,7 +11,7 @@ s.bind(("", puerto))
 
 while True:
     datagrama, origen = s.recvfrom(1024)
-    if (random.randint(0, 100) < 50):
+    if (random.randint(0, 100) < 40):
         print("Simulando datagrama perdido")
         continue
     print("Datagrama recibido")
