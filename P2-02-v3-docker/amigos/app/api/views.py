@@ -11,7 +11,8 @@ def get_amigo(id):
     """
     amigo = Amigo.query.get_or_404(id)
     amigodict = {'id': amigo.id, 'name': amigo.name,
-                 'lati': amigo.lati, 'longi': amigo.longi}
+                 'lati': amigo.lati, 'longi': amigo.longi,
+                 'devi': amigo.devi}
     return jsonify(amigodict)
 
 @api.route("/amigo/byName/<name>")
@@ -24,7 +25,8 @@ def get_amigo_by_name(name):
     if not amigo:
         abort(404, "No se encuentra ningún amigo con ese nombre")
     amigodict = {'id': amigo.id, 'name': amigo.name,
-                 'lati': amigo.lati, 'longi': amigo.longi}
+                 'lati': amigo.lati, 'longi': amigo.longi,
+                 'devi': amigo.devi}
     return jsonify(amigodict)
 
 @api.route("/amigos")
@@ -38,7 +40,8 @@ def list_amigos():
     amigos_list = []
     for amigo in amigos:
         amigodict = {'id': amigo.id, 'name': amigo.name,
-                    'lati': amigo.lati, 'longi': amigo.longi}
+                    'lati': amigo.lati, 'longi': amigo.longi,
+                    'devi': amigo.devi}
         amigos_list.append(amigodict)
     return jsonify(amigos_list)
 
@@ -61,6 +64,7 @@ def edit_amigo(id):
     name = request.json.get("name")
     lati = request.json.get("lati")
     longi = request.json.get("longi")
+    devi = request.json.get("devi")
     # Usamos los campos que estén presentes para actualizar el objeto amigo
     if name:
         amigo.name = name
@@ -68,15 +72,19 @@ def edit_amigo(id):
         amigo.lati = lati
     if longi:
         amigo.longi = longi
+    if devi:
+        amigo.devi = devi
+    
 
     # Finalmente, si hemos cambiado algo en el objeto amigo, hacemos
     # el commit a la base de datos para que se guarden las modificaciones
-    if name or lati or longi:
+    if name or lati or longi or devi:
         db.session.commit()
 
     # Y retornamos el JSON con los nuevos datos
     amigodict = {"id": amigo.id, "name": amigo.name,
-                 "longi": amigo.longi, "lati": amigo.lati }
+                 "longi": amigo.longi, "lati": amigo.lati,
+                 "devi": amigo.devi}
     return jsonify(amigodict)
 
 
@@ -128,13 +136,15 @@ def new_amigo():
     # damos un valor de 0
     lati = request.json.get("lati", "0")
     longi = request.json.get("longi", "0")
+    devi = request.json.get("devi", "NULL")
 
     # Creamos un nuevo amigo con esos datos
-    amigo = Amigo(name=name, lati=lati, longi=longi)
+    amigo = Amigo(name=name, lati=lati, longi=longi, devi=devi)
     db.session.add(amigo)
     db.session.commit()
 
     # Y retornamos el JSON con los datos del nuevo amigo
     amigodict = {"id": amigo.id, "name": amigo.name,
-                 "longi": amigo.longi, "lati": amigo.lati }
+                 "longi": amigo.longi, "lati": amigo.lati,
+                 "devi": amigo.devi}
     return jsonify(amigodict)
