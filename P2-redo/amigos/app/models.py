@@ -1,0 +1,17 @@
+from app import db
+
+class Amigo(db.Model):
+    __tablename__ = "amigos"
+
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(32), unique=True)
+    longi = db.Column(db.String(32))
+    lati = db.Column(db.String(32))
+    device = db.Column(db.Text())   
+
+    def to_dict(self):
+        return {"id": self.id, "name": self.name, "lati": self.lati,
+                "longi": self.longi, "device": self.device}
+
+    def __repr__(self):
+        return "<Amigo[{}]: {}>".format(self.id, self.name)

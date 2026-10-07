@@ -1,0 +1,3 @@
+# instance/config.py
+import os
+SQLALCHEMY_DATABASE_URI = os.getenv("DATABASE_URI", "sqlite://")
