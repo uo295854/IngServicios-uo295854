@@ -24,7 +24,7 @@ def get_amigo_by_name(name):
 @api.route("/amigos")
 def list_amigos():
     amigos = Amigo.query.all()
-    lista = [{'id': a.id, 'name': a.name, 'lati': a.lati, 'longi': a.longi, 'device': amigo.device}
+    lista = [{'id': a.id, 'name': a.name, 'lati': a.lati, 'longi': a.longi, 'device': a.device}
              for a in amigos]
     return jsonify(lista)
 

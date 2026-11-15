@@ -1,0 +1,12 @@
+○ inetutils-inetd.service - GNU Network Utilities internet superserver
+     Loaded: loaded (]8;;file://is-ab/usr/lib/systemd/system/inetutils-inetd.service/usr/lib/systemd/system/inetutils-inetd.service]8;;; [0;1;32menabled[0m; preset: [0;1;32menabled[0m)
+     Active: inactive (dead) (Result: exec-condition) since Sun 2026-11-15 15:18:12 UTC; 1min 0s ago
+  Condition: start [0;1;38;5;185mcondition unmet[0m at Sun 2026-11-15 15:18:12 UTC; 1min 0s ago
+       Docs: ]8;;man:inetutils-inetd(8)man:inetutils-inetd(8)]8;;
+             ]8;;https://www.gnu.org/software/inetutils/manual/https://www.gnu.org/software/inetutils/manual/]8;;
+    Process: 3947 ExecCondition=grep -qr ^[0-9A-Za-z/] /etc/inetd.conf /etc/inetd.d/ [0;1;31m(code=exited, status=1/FAILURE)[0m
+        CPU: 7ms
+
+nov 15 15:18:12 is-ab systemd[1]: Starting inetutils-inetd.service - GNU Network Utilities internet superserver...
+nov 15 15:18:12 is-ab systemd[1]: inetutils-inetd.service: Skipped due to 'exec-condition'.
+nov 15 15:18:12 is-ab systemd[1]: Condition check resulted in inetutils-inetd.service - GNU Network Utilities internet superserver being skipped.

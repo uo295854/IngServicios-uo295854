@@ -24,4 +24,15 @@ def create_app(config_name):
     def prueba():
         return "¡Hola Flask con MariaDB!"
     
+    @app.route("/health")
+    def health():
+        try:
+            db.session.execute(db.text("SELECT 1"))
+            return {"status": "ok", "database": "ok"}, 200
+        except Exception:
+            return {"status": "error", "database": "error"}, 503
+    
+    from .metrics import metrics as metrics_blueprint
+    app.register_blueprint(metrics_blueprint)
+        
     return app
