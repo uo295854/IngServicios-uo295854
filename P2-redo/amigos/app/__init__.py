@@ -34,5 +34,9 @@ def create_app(config_name):
     
     from .metrics import metrics as metrics_blueprint
     app.register_blueprint(metrics_blueprint)
+    
+    from .bienvenido import bienvenido as bienvenido_blueprint
+    app.register_blueprint(bienvenido_blueprint, url_prefix='/bienvenido')
         
     return app
+
