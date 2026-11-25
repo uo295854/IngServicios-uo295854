@@ -1,0 +1,4 @@
+#!/bin/bash
+docker run -d --rm --name wowza -p 8088:8088 \
+    --entrypoint /sbin/entrypoint.sh \
+     wowzamedia/wowza-streaming-engine-linux:4.8.17
